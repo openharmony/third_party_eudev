@@ -120,6 +120,10 @@ static inline pid_t gettid(void) {
 #define MAX_HANDLE_SZ 128
 #endif
 
+#ifdef __MUSL__
+#define HAVE_DECL_NAME_TO_HANDLE_AT 1
+#endif
+
 #ifndef __NR_name_to_handle_at
 #  if defined(__x86_64__)
 #    define __NR_name_to_handle_at 303

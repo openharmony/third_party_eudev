@@ -92,7 +92,11 @@ static int base_cmp(const void *a, const void *b) {
 
         s1 = *(char * const *)a;
         s2 = *(char * const *)b;
+#ifndef __MUSL__
         return strcmp(basename(s1), basename(s2));
+#else
+        return strcmp(basename((char *)s1), basename((char *)s2));
+#endif
 }
 
 static int conf_files_list_strv_internal(char ***strv, const char *suffix, const char *root, char **dirs) {
