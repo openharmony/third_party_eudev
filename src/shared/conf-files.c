@@ -35,6 +35,17 @@
 #include "hashmap.h"
 #include "conf-files.h"
 
+static const char *basename_internal(const char *filename) {
+        const char *ret = filename, *p = filename;
+
+        p = strchr(filename, '/');
+        while (p) {
+                ret = &p[1];
+                p = strchr(ret, '/');
+        }
+        return ret;
+}
+
 static int files_add(Hashmap *h, const char *root, const char *path, const char *suffix) {
         _cleanup_closedir_ DIR *dir = NULL;
         char *dirpath;
@@ -71,7 +82,7 @@ static int files_add(Hashmap *h, const char *root, const char *path, const char 
                 if (!p)
                         return -ENOMEM;
 
-                r = hashmap_put(h, basename(p), p);
+                r = hashmap_put(h, basename_internal(p), p);
                 if (r == -EEXIST) {
                         log_debug("Skipping overridden file: %s.", p);
                         free(p);
@@ -92,11 +103,7 @@ static int base_cmp(const void *a, const void *b) {
 
         s1 = *(char * const *)a;
         s2 = *(char * const *)b;
-#ifndef __MUSL__
-        return strcmp(basename(s1), basename(s2));
-#else
-        return strcmp(basename((char *)s1), basename((char *)s2));
-#endif
+        return strcmp(basename_internal(s1), basename_internal(s2));
 }
 
 static int conf_files_list_strv_internal(char ***strv, const char *suffix, const char *root, char **dirs) {
