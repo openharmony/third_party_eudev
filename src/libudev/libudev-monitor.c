@@ -106,47 +106,6 @@ static struct udev_monitor *udev_monitor_new(struct udev *udev)
         return udev_monitor;
 }
 
-/* we consider udev running when /dev is on devtmpfs */
-static bool udev_has_devtmpfs(struct udev *udev) {
-
-        union file_handle_union h = FILE_HANDLE_INIT;
-        _cleanup_fclose_ FILE *f = NULL;
-        char line[LINE_MAX], *e;
-        int mount_id;
-        int r;
-
-        r = name_to_handle_at(AT_FDCWD, "/dev", &h.handle, &mount_id, 0);
-        if (r < 0) {
-                if (errno != EOPNOTSUPP)
-                        log_debug_errno(errno, "name_to_handle_at on /dev: %m");
-                return false;
-        }
-
-        f = fopen("/proc/self/mountinfo", "re");
-        if (!f)
-                return false;
-
-        FOREACH_LINE(line, f, return false) {
-                int mid;
-
-                if (sscanf(line, "%i", &mid) != 1)
-                        continue;
-
-                if (mid != mount_id)
-                        continue;
-
-                e = strstr(line, " - ");
-                if (!e)
-                        continue;
-
-                /* accept any name that starts with the currently expected type */
-                if (startswith(e + 3, "devtmpfs") || startswith(e + 3, "tmpfs"))
-                        return true;
-        }
-
-        return false;
-}
-
 static void monitor_set_nl_address(struct udev_monitor *udev_monitor) {
         union sockaddr_union snl;
         socklen_t addrlen;
@@ -186,7 +145,7 @@ struct udev_monitor *udev_monitor_new_from_netlink_fd(struct udev *udev, const c
                  * We do not set a netlink multicast group here, so the socket
                  * will not receive any messages.
                  */
-                if (access(UDEV_ROOT_RUN "/udev/control", F_OK) < 0 || !udev_has_devtmpfs(udev)) {
+                if (access(UDEV_ROOT_RUN "/udev/control", F_OK) < 0) {
                         log_debug("the udev service seems not to be active, disable the monitor");
                         group = UDEV_MONITOR_NONE;
                 } else
