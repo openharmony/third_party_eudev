@@ -1,0 +1,39 @@
+{
+    "name": "@ohos/eudev",
+    "version": "",
+    "description": "Third-party open-source software eudev | 三方开源软件eudev",
+    "homePage": "https://gitee.com/openharmony",
+    "license": "GPL V2.0/LGPL V2.0",
+    "repository": "https://gitee.com/openharmony/third_party_eudev",
+    "domain": "os",
+    "language": "",
+    "publishAs": "code-segment",
+    "private": false,
+    "scripts": {},
+    "tags": [
+        "third_party"
+    ],
+    "keywords": [
+        "third-party",
+        "eudev"
+    ],
+    "envs": [],
+    "dirs": [],
+    "segment": {
+        "destPath": "third_party/eudev"
+    },
+    "component": {
+        "name": "thirdparty_eudev",
+        "subsystem": "",
+        "syscap": [],
+        "features": [],
+        "adapted_system_type": [],
+        "rom": "",
+        "ram": "",
+        "build": {
+            "sub_component": [],
+            "inner_kits": [],
+            "test": []
+        }
+    }
+}
