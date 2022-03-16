@@ -10,7 +10,7 @@
 #define UDEV_LIBEXEC_DIR "/data/udev/"
 #define program_invocation_short_name "udev"
 #define UDEV_VERSION "243"
-#define VERSION "3.2.9"
+#define VERSION "3.2.10"
 #define RLIMIT_NLIMITS 15
 #define RLIMIT_NLIMITS 15
 #define IPTOS_LOWCOST 0x02
