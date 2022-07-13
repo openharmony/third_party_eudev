@@ -684,11 +684,11 @@ static void event_queue_update(void) {
         int r;
 
         if (!udev_list_node_is_empty(&event_list)) {
-                r = touch("/data/udev/queue");
+                r = touch("/data/service/el1/public/udev/queue");
                 if (r < 0)
                         log_warning_errno(r, "could not touch /run/udev/queue: %m");
         } else {
-                r = unlink("/data/udev/queue");
+                r = unlink("/data/service/el1/public/udev/queue");
                 if (r < 0 && errno != ENOENT)
                         log_warning("could not unlink /run/udev/queue: %m");
         }
