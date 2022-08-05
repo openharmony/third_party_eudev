@@ -439,7 +439,7 @@ static int spawn_exec(struct udev_event *event,
         if (sigmask)
                 sigprocmask(SIG_SETMASK, sigmask, NULL);
 
-        execve(argv[0], argv, envp);
+        //execve(argv[0], argv, envp);
 
         /* exec failed */
         log_error_errno(errno, "failed to execute '%s' '%s': %m", argv[0], cmd);
