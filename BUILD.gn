@@ -83,7 +83,8 @@ ohos_shared_library("libudev") {
 
   public_deps = []
 
-  part_name = "input"
+  subsystem_name = "thirdparty"
+  part_name = "eudev"
 }
 
 ## Build libudev.so }}}
@@ -146,7 +147,8 @@ ohos_executable("udevd") {
   deps = [ ":libudev" ]
 
   public_deps = []
-  part_name = "input"
+  subsystem_name = "thirdparty"
+  part_name = "eudev"
 }
 
 ## Build udevd }}}
@@ -188,7 +190,8 @@ ohos_executable("udevadm") {
   deps = [ ":libudev" ]
 
   public_deps = []
-  part_name = "input"
+  subsystem_name = "thirdparty"
+  part_name = "eudev"
 }
 
 ## Build udevd }}}
@@ -196,25 +199,29 @@ ohos_executable("udevadm") {
 ohos_prebuilt_etc("udev_conf") {
   source = "src/udev/udev.conf"
   relative_install_dir = "udev"
-  part_name = "input"
+  subsystem_name = "thirdparty"
+  part_name = "eudev"
 }
 
 ohos_prebuilt_etc("udev_touchscreen_rule") {
   source = "rules.d/touchscreen.rules"
   relative_install_dir = "udev/rules.d"
-  part_name = "input"
+  subsystem_name = "thirdparty"
+  part_name = "eudev"
 }
 
 ohos_prebuilt_etc("udev_vk_rule") {
   source = "rules.d/vk.rules"
   relative_install_dir = "udev/rules.d"
-  part_name = "input"
+  subsystem_name = "thirdparty"
+  part_name = "eudev"
 }
 
 ## Install udevd.rc to /system/etc/init/udevd.rc {{{
 ohos_prebuilt_etc("udevd.rc") {
   source = "udevd.rc"
   relative_install_dir = "init"
-  part_name = "input"
+  subsystem_name = "thirdparty"
+  part_name = "eudev"
 }
 ## Install udevd.rc to /system/etc/init/udevd.rc }}}
