@@ -125,6 +125,10 @@ static int adm_trigger(struct udev *udev, int argc, char *argv[]) {
         _cleanup_udev_enumerate_unref_ struct udev_enumerate *udev_enumerate = NULL;
         int c;
 
+        /* In case udevd is starting, udevd may not receive hotplug event if we trigger
+         * it immediately, we wait for a second, hopefully udevd will have started then */
+        sleep(10);
+
         udev_enumerate = udev_enumerate_new(udev);
         if (udev_enumerate == NULL)
                 return 1;
