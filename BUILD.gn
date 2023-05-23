@@ -83,8 +83,8 @@ ohos_shared_library("libudev") {
 
   public_deps = []
 
-  subsystem_name = "thirdparty"
-  part_name = "eudev"
+  subsystem_name = "multimodalinput"
+  part_name = "input"
 }
 
 ## Build libudev.so }}}
@@ -147,8 +147,8 @@ ohos_executable("udevd") {
   deps = [ ":libudev" ]
 
   public_deps = []
-  subsystem_name = "thirdparty"
-  part_name = "eudev"
+  subsystem_name = "multimodalinput"
+  part_name = "input"
 }
 
 ## Build udevd }}}
@@ -190,8 +190,8 @@ ohos_executable("udevadm") {
   deps = [ ":libudev" ]
 
   public_deps = []
-  subsystem_name = "thirdparty"
-  part_name = "eudev"
+  subsystem_name = "multimodalinput"
+  part_name = "input"
 }
 
 ## Build udevd }}}
