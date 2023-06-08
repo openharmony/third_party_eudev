@@ -14,7 +14,7 @@
         "en": ""
     },
     "component": {
-        "name": "thirdparty_eudev",
+        "name": "eudev",
         "subsystem": "thirdparty",
         "syscap": [],
         "features": [],
