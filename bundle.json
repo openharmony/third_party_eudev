@@ -14,11 +14,11 @@
         "en": ""
     },
     "component": {
-        "name": "thirdparty_eudev",
+        "name": "eudev",
         "subsystem": "thirdparty",
         "syscap": [],
         "features": [],
-        "adapted_system_type": [],
+        "adapted_system_type": [ "standard" ],
         "rom": "",
         "ram": "",
         "deps": {
