@@ -84,7 +84,6 @@ ohos_shared_library("libudev") {
   public_deps = []
 
   subsystem_name = "thirdparty"
-  innerapi_tags = [ "chipsetsdk" ]
   part_name = "eudev"
 }
 
